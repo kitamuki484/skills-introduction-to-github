@@ -19,7 +19,7 @@ program study_tracker
     character(len=20) :: session_dates(MAX_SESSIONS)
     integer :: num_sessions
     real :: total_hours
-    integer :: choice
+    integer :: choice, ios
     logical :: running
 
     num_sessions = 0
@@ -37,7 +37,9 @@ program study_tracker
 
     do while (running)
         call show_menu()
-        read(*, *, iostat=choice) choice
+        choice = -1
+        read(*, *, iostat=ios) choice
+        if (ios /= 0) choice = -1
 
         select case (choice)
         case (1)
