@@ -131,7 +131,7 @@ subroutine add_session(unit, filename, hours_arr, dates_arr, &
     end if
 
     write(*, '(A, F6.2, A)') '  追加しました！ / Added ', h, ' hours.'
-    write(*, '(A, F7.2, A, I0, A)') '  累計: ', total, ' 時間 / Total: ', nint(total), ' hours recorded.'
+    write(*, '(A, F7.2, A)') '  累計 / Total: ', total, ' 時間 / hours'
 
 end subroutine add_session
 
