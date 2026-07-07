@@ -177,7 +177,8 @@ subroutine show_summary(total, target)
     bar_filled = min(int(pct / 5.0), 20)  ! 20-char bar (each char = 5%)
 
     write(*, *)
-    write(*, '(A)') '  ========== 進捗サマリー / Progress Summary =========='
+    write(*, '(A)') '  /\  /\  /\  進捗サマリー / Progress Summary  /\  /\  /\'
+    write(*, '(A)') ' /  \/  \/  \~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/  \/  \/  \'
     write(*, '(A, I0, A)')  '  目標 / Target      : ', target, ' 時間 / hours'
     write(*, '(A, F7.2, A)') '  累計 / Completed   : ', total, ' 時間 / hours'
 
@@ -189,16 +190,17 @@ subroutine show_summary(total, target)
 
     write(*, '(A, F5.1, A)') '  達成率 / Progress  : ', pct, ' %'
 
-    ! プログレスバー / Progress bar
-    write(*, '(A)', advance='no') '  ['
+    ! 木テーマのプログレスバー / Tree-themed progress bar
+    ! 木 = filled (tree grown), ． = empty (soil)
+    write(*, '(A)', advance='no') '  |'
     do i = 1, 20
         if (i <= bar_filled) then
-            write(*, '(A)', advance='no') '#'
+            write(*, '(A)', advance='no') char(230)//char(156)//char(168)
         else
-            write(*, '(A)', advance='no') '-'
+            write(*, '(A)', advance='no') ' . '
         end if
     end do
-    write(*, '(A)') ']'
+    write(*, '(A)') '|'
 
     write(*, *)
     if (total >= real(target)) then
@@ -207,7 +209,7 @@ subroutine show_summary(total, target)
     else
         write(*, '(A)') '  引き続き頑張ってください！/ Keep going, you can do it!'
     end if
-    write(*, '(A)') '  ====================================================='
+    write(*, '(A)') ' \__/\__/\__/~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\__/\__/\__/'
 
 end subroutine show_summary
 
